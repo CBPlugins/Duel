@@ -1,0 +1,16 @@
+name: Duel
+version: 1.0.0
+main: com.github.cbplugins.duel.Duel
+author: CBPlugins
+description: The official duel minigame for minecraft
+
+commands:
+  stats:
+    usage: /<command> [player]
+    description: Shows the stats of the specified player or yourself
+  setlobby:
+    usage: /<command>
+    description: Set the lobby spawn location
+  setspawn:
+    usage: /<command> [1, 2]
+    description: Set the ingame spawn location for the specified player
