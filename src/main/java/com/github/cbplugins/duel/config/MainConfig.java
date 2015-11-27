@@ -47,9 +47,14 @@ public class MainConfig {
      * Constructs a new MainConfig object and loads needed data.
      */
     public MainConfig() {
-        File config = new File( Duel.getInstance().getDataFolder(), "config.yml" );
-
         try {
+            if ( !Duel.getInstance().getDataFolder().exists() && !Duel.getInstance().getDataFolder().mkdir() ) {
+                Duel.severe( "Couldn't create datafolder. Please double check your file system permissions." );
+                Duel.severe( "Due to this error the server will shutdown automatically." );
+                Bukkit.shutdown();
+            }
+
+            File config = new File( Duel.getInstance().getDataFolder(), "config.yml" );
             if ( !config.exists() ) {
                 if ( !config.createNewFile() ) {
                     Duel.severe( "Couldn't create config file. Please double check your file system permissions." );
@@ -103,10 +108,10 @@ public class MainConfig {
         FileConfiguration config = YamlConfiguration.loadConfiguration( file );
 
         this.setup = config.getBoolean( "setup" );
-        this.lobbySpawn = new Spawnpoint( config.getConfigurationSection( "spawns.lobby" ).getValues( true ) );
-        this.firstSpawn = new Spawnpoint( config.getConfigurationSection( "spawns.first" ).getValues( true ) );
-        this.secondSpawn = new Spawnpoint( config.getConfigurationSection( "spawns.second" ).getValues( true ) );
-        this.spectatorSpawn = new Spawnpoint( config.getConfigurationSection( "spawns.spectator" ).getValues( true ) );
+        this.lobbySpawn = (Spawnpoint) config.get( "spawns.lobby" );
+        this.firstSpawn = (Spawnpoint) config.get( "spawns.first" );
+        this.secondSpawn = (Spawnpoint) config.get( "spawns.second" );
+        this.spectatorSpawn = (Spawnpoint) config.get( "spawns.spectator" );
 
         Duel.info( "Configuration file loaded" );
     }
