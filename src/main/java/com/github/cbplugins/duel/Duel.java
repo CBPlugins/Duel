@@ -1,5 +1,6 @@
 package com.github.cbplugins.duel;
 
+import com.github.cbplugins.duel.command.SetLobbyCommand;
 import com.github.cbplugins.duel.config.MainConfig;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -51,6 +52,8 @@ public class Duel extends JavaPlugin {
         this.mainConfig = new MainConfig();
 
         /*---------------------- setup commands ----------------------*/
+
+        getCommand( "setlobby" ).setExecutor( new SetLobbyCommand() );
 
         /*---------------------- game commands ----------------------*/
 
