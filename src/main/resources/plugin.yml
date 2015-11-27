@@ -12,5 +12,5 @@ commands:
     usage: /<command>
     description: Set the lobby spawn location
   setspawn:
-    usage: /<command> [1, 2]
-    description: Set the ingame spawn location for the specified player
+    usage: /<command> [first, second, spectator]
+    description: Set the spawn location for the specified type
